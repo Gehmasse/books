@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
- * @param int $id
- * @param Status $status
- * @param string $author
- * @param Carbon $started_at
- * @param ?Carbon $finished_at
- * @param string $info
- * @param ?int $rating
+ * @property int $id
+ * @property string $title
+ * @property Status $status
+ * @property string $author
+ * @property Carbon $started_at
+ * @property ?Carbon $finished_at
+ * @property string $info
+ * @property ?int $rating
  */
 class Book extends Model
 {
