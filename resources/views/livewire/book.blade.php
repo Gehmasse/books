@@ -2,7 +2,7 @@
 
 <div class="book">
 
-    <form wire:submit="save" @style(['display: none' => $this->showForm])>
+    <form wire:submit="save" @style(['display: none' => !$this->showForm])>
         <select wire:model.blur="status">
             {{ App\Status::options() }}
         </select>
@@ -18,14 +18,17 @@
 
     </form>
 
-    <div @style(['display: none' => !$this->showForm])>
-        <div>{{ $id }}</div>
-        <div>{{ $status }}</div>
+    <div @style(['display: none' => $this->showForm])>
+        <div><em>({{ $id }})</em></div>
+        <div><b>{{ $title }}</b></div>
+        <div @style(['color: ' . $this->status()->color()])>{{ $this->status()->label()}}</div>
         <div>{{ $author }}</div>
-        <div>{{ $started_at }}</div>
-        <div>{{ $finished_at }}</div>
+        <div>{{ $this->started_at()?->format('d.m.Y') ?? '---' }} - {{ $this->finished_at()?->format('d.m.Y') ?? '---' }}</div>
         <div>{{ $info }}</div>
-        <div>{{ $rating }}</div>
+        @if($this->finished()) <div>{{ $this->rating() }}</div> @endif
+
+        <button wire:click="edit">Edit</button>
     </div>
+
 
 </div>

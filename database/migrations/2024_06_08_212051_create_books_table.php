@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->enum('status', ['toread', 'reading', 'finished', 'aborted']);
             $table->string('title');
             $table->string('author');
-            $table->date('started_at');
+            $table->date('started_at')->nullable();
             $table->date('finished_at')->nullable();
             $table->string('info');
             $table->unsignedTinyInteger('rating')->nullable();

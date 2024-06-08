@@ -11,6 +11,6 @@ class Books extends Component
 {
     public function books(): Collection
     {
-        return \App\Models\Book::all();
+        return \App\Models\Book::all()->sortByDesc('id');
     }
 }

@@ -12,9 +12,9 @@ trait Attributes
         return Status::from($this->status);
     }
 
-    private function started_at(): Carbon
+    private function started_at(): ?Carbon
     {
-        return Carbon::parse($this->started_at);
+        return empty($this->finished_at) ? null : Carbon::parse($this->started_at);
     }
 
     private function finished_at(): ?Carbon

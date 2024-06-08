@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
  * @property string $title
  * @property Status $status
  * @property string $author
- * @property Carbon $started_at
+ * @property ?Carbon $started_at
  * @property ?Carbon $finished_at
  * @property string $info
  * @property ?int $rating

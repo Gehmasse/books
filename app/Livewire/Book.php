@@ -2,6 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Status;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\HtmlString;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
@@ -28,7 +31,7 @@ class Book extends Component
         $this->title = $this->book->title;
         $this->status = $this->book->status->value;
         $this->author = $this->book->author;
-        $this->started_at = $this->book->started_at->format('Y-m-d');
+        $this->started_at = $this->book->started_at?->format('Y-m-d') ?? '';
         $this->finished_at = $this->book->finished_at?->format('Y-m-d') ?? '';
         $this->info = $this->book->info;
         $this->rating = $this->book->rating;
@@ -47,5 +50,27 @@ class Book extends Component
         $book->rating = $this->rating;
 
         $book->save();
+
+        $this->showForm = false;
+    }
+
+    public function rating(): Htmlable
+    {
+        $i = min(max($this->rating, 0), 5);
+
+        $empty = str_repeat('<i class="bi bi-star-fill"></i>', $i);
+        $filled = str_repeat('<i class="bi bi-star"></i>', 5 - $i);
+
+        return new HtmlString($empty . $filled);
+    }
+
+    public function edit(): void
+    {
+        $this->showForm = true;
+    }
+
+    public function finished(): bool
+    {
+        return $this->status() === Status::FINISHED;
     }
 }

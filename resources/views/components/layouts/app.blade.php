@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
         <title>{{ $title ?? 'Books' }}</title>
 
         <style>
@@ -32,7 +34,7 @@
 
             }
 
-            input, select {
+            input, select, button {
                 padding: 5px;
                 border: 1px var(--bright) solid;
                 border-radius: 4px;
@@ -48,13 +50,17 @@
                 padding: 20px;
             }
 
-            .books > form, .book > form {
+            .books > form, .book > form, .book > div {
                 display: flex;
                 flex-direction: row;
                 gap: 10px;
                 flex-wrap: wrap;
                 justify-content: center;
                 border-radius: 10px;
+            }
+
+            .book > div > div {
+
             }
         </style>
     </head>

@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
 use Livewire\Wireable;
 
 enum Status: string implements Wireable, Htmlable
@@ -40,6 +39,21 @@ enum Status: string implements Wireable, Htmlable
 
     public function label(): string
     {
-        return Str::convertCase($this->name, MB_CASE_TITLE);
+        return match ($this) {
+            self::TO_READ => 'To Read',
+            self::READING => 'Reading',
+            self::FINISHED => 'Finished',
+            self::ABORTED => 'Aborted',
+        };
+    }
+
+    public function color(): string
+    {
+        return match ($this) {
+            self::TO_READ => 'orange',
+            self::READING => 'yellow',
+            self::FINISHED => 'green',
+            self::ABORTED => 'red',
+        };
     }
 }
