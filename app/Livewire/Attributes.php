@@ -3,22 +3,33 @@
 namespace App\Livewire;
 
 use App\Status;
-use Illuminate\Support\Carbon;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\HtmlString;
 
 trait Attributes
 {
-    private function status(): Status
+    public function rating(): Htmlable
     {
-        return Status::from($this->status);
+        $i = min(max($this->book->rating, 0), 5);
+
+        $empty = str_repeat('<i class="bi bi-star-fill"></i>', $i);
+        $filled = str_repeat('<i class="bi bi-star"></i>', 5 - $i);
+
+        return new HtmlString($empty . $filled);
     }
 
-    private function started_at(): ?Carbon
+    public function link(): Htmlable
     {
-        return empty($this->finished_at) ? null : Carbon::parse($this->started_at);
+        return new HtmlString('<a href="/' . $this->book->id . '">' . $this->book->id . '</a>');
     }
 
-    private function finished_at(): ?Carbon
+    public function finished(): bool
     {
-        return empty($this->finished_at) ? null : Carbon::parse($this->finished_at);
+        return $this->book->status === Status::FINISHED;
+    }
+
+    public function hasRating(): bool
+    {
+        return $this->finished() && $this->book->rating > 0;
     }
 }

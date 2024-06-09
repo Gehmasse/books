@@ -1,0 +1,61 @@
+:root {
+    --dark: darkslategray;
+    --bright: whitesmoke;
+}
+
+* {
+    background-color: var(--dark);
+    color: var(--bright);
+}
+
+.books {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-content: center;
+}
+
+input, select, button {
+    padding: 5px;
+    border: 1px var(--bright) solid;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background: var(--bright);
+    color: var(--dark);
+}
+
+.create, .book > form {
+    border: 1px var(--bright) solid;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.create, .show {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.book > form > * {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.book > form {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    align-items: center;
+    gap: 20px;
+}

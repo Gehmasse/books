@@ -1,6 +1,6 @@
 @php /** @var App\Livewire\Create $this */ @endphp
 
-<form wire:submit="save">
+<form class="create" wire:submit="save">
 
     <select wire:model.blur="status">
         {{ App\Status::options() }}

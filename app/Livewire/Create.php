@@ -16,6 +16,7 @@ class Create extends Component
     public ?int $rating = null;
 
     use Attributes;
+    use Casts;
 
     public function mount(): void
     {
