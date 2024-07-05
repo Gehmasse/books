@@ -1,6 +1,8 @@
 @php /** @var App\Livewire\Show $this*/ @endphp
 
 <div class="book">
+    <a href="/">Home</a>
+
     <form wire:submit="save">
 
         <select wire:model.blur="status">

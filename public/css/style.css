@@ -15,7 +15,9 @@
     align-content: center;
 }
 
-input, select, button {
+input,
+select,
+button {
     padding: 5px;
     border: 1px var(--bright) solid;
     border-radius: 4px;
@@ -26,13 +28,15 @@ input[type="submit"] {
     color: var(--dark);
 }
 
-.create, .book > form {
+.create,
+.book > form {
     border: 1px var(--bright) solid;
     padding: 20px;
     border-radius: 10px;
 }
 
-.create, .show {
+.create,
+.show {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -45,6 +49,8 @@ input[type="submit"] {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .book > form > * {
