@@ -18,6 +18,7 @@ use Illuminate\Support\Carbon;
  * @property string $info
  * @property ?int $rating
  * @property-read int $status_sort
+ * @property-read string $time
  */
 class Book extends Model
 {
@@ -27,6 +28,17 @@ class Book extends Model
         'status' => Status::class,
         'started_at' => 'date',
         'finished_at' => 'date',
+    ];
+
+    protected $fillable = [
+        'title',
+        'status',
+        'author',
+        'started_at',
+        'finished_at',
+        'info',
+        'rating',
+
     ];
 
     public function hasRating(): bool
@@ -41,11 +53,22 @@ class Book extends Model
 
     protected function statusSort(): Attribute
     {
-        return Attribute::get(fn() =>  match($this->status) {
+        return Attribute::get(fn() => match ($this->status) {
             Status::TO_READ => 2,
             Status::READING => 1,
             Status::FINISHED => 3,
             Status::ABORTED => 4,
         });
+    }
+
+    protected function info(): Attribute
+    {
+        return Attribute::set(fn(?string $value) => $value ?? '');
+    }
+
+    protected function time(): Attribute
+    {
+        return Attribute::get(fn() => $this->started_at === null && $this->finished_at === null
+            ? '---' : ($this->started_at?->format('d.m.Y') ?? '---') . ' - ' . ($this->finished_at?->format('d.m.Y') ?? '---'));
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'dashboard')
+Route::view('/', 'books')
     ->middleware(['auth', 'verified'])
     ->name('main');
 
@@ -13,10 +13,6 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
-
-Route::get('/books/{book}', App\Livewire\Book::class)
-    ->middleware(['auth', 'verified'])
-    ->name('book');
 
 Route::view('/books', 'books')
     ->middleware(['auth', 'verified'])
