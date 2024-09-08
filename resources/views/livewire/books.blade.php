@@ -5,7 +5,7 @@
     <livewire:create/>
 
     @foreach($this->books() as $key => $book)
-        <livewire:show :book="$book" wire:key="$key"/>
+        <livewire:show :$book wire:key="$key"/>
     @endforeach
 
 </div>
