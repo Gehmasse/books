@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Number;
 
 /**
  * @property int $id
@@ -70,5 +71,13 @@ class Book extends Model
     {
         return Attribute::get(fn() => $this->started_at === null && $this->finished_at === null
             ? '---' : ($this->started_at?->format('d.m.Y') ?? '---') . ' - ' . ($this->finished_at?->format('d.m.Y') ?? '---'));
+    }
+
+    protected function rating(): Attribute
+    {
+        return Attribute::make(
+            get: fn(?int $i) => $i === null ? null : Number::clamp($i, 0, 5),
+            set: fn(mixed $i) => $i === null || $i === '---' ? null : Number::clamp($i, 0, 5),
+        );
     }
 }

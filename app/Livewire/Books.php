@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Book as BookModel;
 use App\Status;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -12,6 +13,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
@@ -34,9 +36,12 @@ class Books extends Component implements HasTable, HasForms
                 ->inline()
                 ->required(),
             TextInput::make('author')->required(),
-            DatePicker::make('started_at')->required(),
+            DatePicker::make('started_at'),
             DatePicker::make('finished_at'),
             TextInput::make('info')->default(''),
+            Radio::make('rating')
+                ->options(['---', 1, 2, 3, 4, 5])
+                ->inline(),
         ];
     }
 
@@ -55,6 +60,8 @@ class Books extends Component implements HasTable, HasForms
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('time'),
+                ViewColumn::make('rating')
+                    ->view('tables.columns.stars'),
             ])
             ->paginated([10, 20, 30, 'all'])
             ->defaultPaginationPageOption(20)
