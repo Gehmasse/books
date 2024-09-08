@@ -17,14 +17,4 @@ trait Attributes
 
         return new HtmlString($empty . $filled);
     }
-
-    public function finished(): bool
-    {
-        return $this->book->status === Status::FINISHED;
-    }
-
-    public function hasRating(): bool
-    {
-        return $this->finished() && $this->book->rating > 0;
-    }
 }

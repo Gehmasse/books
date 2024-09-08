@@ -26,4 +26,14 @@ class Book extends Model
         'started_at' => 'date',
         'finished_at' => 'date',
     ];
+
+    public function hasRating(): bool
+    {
+        return $this->finished() && $this->rating > 0;
+    }
+
+    public function finished(): bool
+    {
+        return $this->status === Status::FINISHED;
+    }
 }

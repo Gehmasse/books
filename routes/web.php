@@ -18,7 +18,7 @@ Route::get('/books/{book}', App\Livewire\Book::class)
     ->middleware(['auth', 'verified'])
     ->name('book');
 
-Route::get('/books', App\Livewire\Books::class)
+Route::view('/books', 'books')
     ->middleware(['auth', 'verified'])
     ->name('books');
 
