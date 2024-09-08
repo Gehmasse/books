@@ -1,5 +1,7 @@
 <x-app-layout>
+
     <livewire:books/>
+
     <style>
         .books {
             display: flex;
@@ -14,4 +16,5 @@
             min-width: 60%;
         }
     </style>
+
 </x-app-layout>

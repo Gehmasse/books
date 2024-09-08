@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Status;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -16,6 +17,7 @@ use Illuminate\Support\Carbon;
  * @property ?Carbon $finished_at
  * @property string $info
  * @property ?int $rating
+ * @property-read int $status_sort
  */
 class Book extends Model
 {
@@ -35,5 +37,15 @@ class Book extends Model
     public function finished(): bool
     {
         return $this->status === Status::FINISHED;
+    }
+
+    protected function statusSort(): Attribute
+    {
+        return Attribute::get(fn() =>  match($this->status) {
+            Status::TO_READ => 2,
+            Status::READING => 1,
+            Status::FINISHED => 3,
+            Status::ABORTED => 4,
+        });
     }
 }

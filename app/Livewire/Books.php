@@ -28,14 +28,12 @@ class Books extends Component implements HasTable, HasForms
                     ->sortable(),
 
                 TextColumn::make('status')
-                    ->badge()
-                    ->sortable(['status_sort']),
+                    ->searchable()
+                    ->badge(),
 
                 TextColumn::make('author')
                     ->searchable()
                     ->sortable(),
-
-                TextColumn::make('time')->sortable(),
             ])
             ->paginated([10, 20, 30, 'all'])
             ->defaultPaginationPageOption(20)
@@ -43,7 +41,6 @@ class Books extends Component implements HasTable, HasForms
             ->recordUrl(fn(Model $record) => route('book', $record))
             ->openRecordUrlInNewTab()
             ->striped()
-            ->defaultSort('order_column')
-            ->filters([]);
+            ->defaultSort('id', 'desc');
     }
 }
