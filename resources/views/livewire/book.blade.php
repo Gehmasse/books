@@ -1,7 +1,7 @@
 @php /** @var App\Livewire\Show $this*/ @endphp
 
 <div class="book">
-    <a href="/">Home</a>
+    <a href="{{ route('main') }}">Home</a>
 
     <form wire:submit="save">
 

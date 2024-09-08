@@ -3,7 +3,7 @@
 
 <div class="show">
 
-    <div><em>({{ $this->link() }})</em></div>
+    <div><em>(<a href="{{ route('book', $book) }}">{{ $book->id }}</a>)</em></div>
 
     <div><b>{{ $book->title }}</b></div>
 

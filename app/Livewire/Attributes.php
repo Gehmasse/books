@@ -18,11 +18,6 @@ trait Attributes
         return new HtmlString($empty . $filled);
     }
 
-    public function link(): Htmlable
-    {
-        return new HtmlString('<a href="/' . $this->book->id . '">' . $this->book->id . '</a>');
-    }
-
     public function finished(): bool
     {
         return $this->book->status === Status::FINISHED;
