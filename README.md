@@ -1,6 +1,6 @@
 # Books
 
-A simple browser-based application to track your books and their reading statuses.
+A browser-based application to track your books and their reading statuses.
 
 ![](./public/img/list.png)
 ![](./public/img/form.png)
